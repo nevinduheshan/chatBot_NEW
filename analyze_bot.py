@@ -6,7 +6,7 @@ import google.generativeai as genai
 
 load_dotenv()
 
-# ==================== CONFIGURATION ====================
+# ==================== CONFIGURATION ====================dddd
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 ASSISTANT_NAME = os.getenv("ASSISTANT_NAME")
