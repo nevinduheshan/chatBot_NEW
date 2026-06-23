@@ -57,7 +57,7 @@ with st.sidebar:
 # --- Initialize Chat History ---
 if "messages" not in st.session_state:
     st.session_state.messages = [
-        {"role": "assistant", "content": "Hello! I am your Advanced Financial Analyst. I can now analyze your historical PDF data, calculate trends, and provide financial forecasts for upcoming years (e.g., 2026, 2027). How can I assist you today?"}
+        {"role": "assistant", "content": "Hello! How can I assist you today?"}
     ]
 
 # --- Display Chat History ---
