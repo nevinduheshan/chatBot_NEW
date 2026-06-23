@@ -42,7 +42,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-st.markdown('<div class="main-title">📊 Predictive Financial AI Analyst</div>', unsafe_allow_html=True)
+st.markdown('<div class="main-title"> Predictive Financial AI Analyst</div>', unsafe_allow_html=True)
 st.markdown('<div class="sub-title">Analyze past data and forecast future financial trends instantly</div>', unsafe_allow_html=True)
 
 # --- Sidebar Configuration ---
