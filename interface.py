@@ -51,7 +51,7 @@ with st.sidebar:
     st.success("⚡ Pinecone: Connected")
     st.success("⚡ Gemini: Connected")
     st.info(f"🤖 Assistant: {ASSISTANT_NAME}")
-    st.caption("Powered by Pinecone RAG & Gemini 1.5 Flash")
+    st.caption("Powered by SmartyAI")
 
 # --- Initialize Chat History ---
 if "messages" not in st.session_state:
