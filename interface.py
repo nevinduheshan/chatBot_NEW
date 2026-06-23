@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 from pinecone import Pinecone
 import google.generativeai as genai
+from datetime import datetime  # 🪵 වෙලාව සටහන් කරගැනීමට
 
 # Load environment variables from .env file
 load_dotenv()
@@ -39,10 +40,10 @@ st.markdown("""
         margin-bottom: 30px;
     }
     </style>
-""", unsafe_allow_html=True) # 💥 Fixed typo here
+""", unsafe_allow_html=True)
 
-st.markdown('<div class="main-title">📊 Financial AI Analyst</div>', unsafe_allow_html=True) # 💥 Fixed typo here
-st.markdown('<div class="sub-title">Ask any question about your uploaded PDF reports instantly</div>', unsafe_allow_html=True) # 💥 Fixed typo here
+st.markdown('<div class="main-title">📊 Financial AI Analyst</div>', unsafe_allow_html=True)
+st.markdown('<div class="sub-title">Ask any question about your uploaded PDF reports instantly</div>', unsafe_allow_html=True)
 
 # --- Sidebar Configuration ---
 with st.sidebar:
@@ -90,6 +91,12 @@ def process_ai_response(user_query):
 
 # --- Handle User Input ---
 if user_input := st.chat_input("Type your question here..."):
+    # Current timestamp එක ලබා ගැනීම
+    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    
+    # 🪵 1. සර්වර් ලොග් එකට ප්‍රශ්නය ඇතුළත් කිරීම (Terminal / Streamlit Cloud Logs)
+    print(f"\n[INFO] {current_time} - 📥 USER QUESTION: {user_input}")
+    
     # Display user message in chat message container
     with st.chat_message("user"):
         st.markdown(user_input)
@@ -103,8 +110,16 @@ if user_input := st.chat_input("Type your question here..."):
             try:
                 ai_response = process_ai_response(user_input)
                 st.markdown(ai_response)
+                
+                # 🪵 2. පිළිතුර සාර්ථකව යැවූ බව ලොග් කිරීම
+                print(f"[INFO] {datetime.now().strftime('%H:%M:%S')} - 📤 AI RESPONSE: Generated Successfully.")
+                
                 # Add assistant response to chat history
                 st.session_state.messages.append({"role": "assistant", "content": ai_response})
             except Exception as e:
                 error_msg = f"❌ An error occurred: {e}"
+                
+                # 🪵 3. කිසියම් දෝෂයක් ආවොත් ඒක ලොග් කිරීම
+                print(f"[ERROR] {datetime.now().strftime('%H:%M:%S')} - ❌ CRASH: {e}")
+                
                 st.error(error_msg)
